@@ -1,0 +1,37 @@
+[
+  {
+    "movieInfoId": "M001",
+    "name": "The Silent Horizon",
+    "year": "2021",
+    "cast": ["Arjun Mehta", "Sara Khan", "Rohit Kapoor"],
+    "releaseDate": "2021-07-16"
+  },
+  {
+    "movieInfoId": "M002",
+    "name": "Echoes of Tomorrow",
+    "year": "2022",
+    "cast": ["Neha Sharma", "Vikram Rao"],
+    "releaseDate": "2022-03-11"
+  },
+  {
+    "movieInfoId": "M003",
+    "name": "Midnight Pulse",
+    "year": "2020",
+    "cast": ["Karan Patel", "Meera Joshi", "Siddharth Bansal"],
+    "releaseDate": "2020-11-05"
+  },
+  {
+    "movieInfoId": "M004",
+    "name": "Shadows Unbound",
+    "year": "2019",
+    "cast": ["Aisha Verma", "Kabir Singh"],
+    "releaseDate": "2019-08-23"
+  },
+  {
+    "movieInfoId": "M005",
+    "name": "Neon Dreams",
+    "year": "2023",
+    "cast": ["Rhea Nair", "Aditya Roy", "Lakshya Kapoor"],
+    "releaseDate": "2023-01-14"
+  }
+]
