@@ -1,12 +1,15 @@
 package com.reactivespring.repo;
 
 import com.reactivespring.entity.MovieInfo;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.ActiveProfiles;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDate;
@@ -21,8 +24,6 @@ class MovieInfoRepositoryTest {
 
     @BeforeEach
     void setUp() {
-
-        movieInfoRepository.deleteAll();
 
         List<MovieInfo> movies = List.of(
                 new MovieInfo("M001", "The Silent Horizon", 2021,
@@ -50,12 +51,36 @@ class MovieInfoRepositoryTest {
     }
 
 
+    @AfterEach
+    void tearDOwn(){
+        movieInfoRepository.deleteAll().block();
+    }
+
 
     @Test
     void test_findAll(){
-
         var movies  = movieInfoRepository.findAll().log();
         StepVerifier.create(movies).expectNextCount(5).verifyComplete();
+    }
+
+    @Test
+    void tet_findById(){
+        Mono<MovieInfo> m005 = movieInfoRepository.findById("M005");
+        StepVerifier.create(m005)
+                .assertNext(a -> a.getName().equals("Neon Dreams"))
+                .verifyComplete();
+    }
+
+    @Test
+    void test_save(){
+        var movie = new MovieInfo(null, "Neon Dreams 1", 2023,
+                List.of("Rhea Nair", "Aditya Roy", "Lakshya Kapoor"),
+                LocalDate.parse("2024-01-14"));
+
+        var savedRecord = movieInfoRepository.save(movie);
+        StepVerifier.create(savedRecord)
+                .assertNext(m -> Assertions.assertNotNull(m.getMovieInfoId()))
+                .verifyComplete();
 
     }
 

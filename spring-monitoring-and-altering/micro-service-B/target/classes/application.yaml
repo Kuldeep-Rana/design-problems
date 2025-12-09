@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: service-b
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+# Micrometer prometheus optional config
+management.metrics.export:
+  prometheus:
+    enabled: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg %X{traceId}%n"

@@ -1,0 +1,21 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
+
+    <appender name="SPLUNK" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+        <url>${SPLUNK_HEC_URL}</url> <!-- e.g. https://splunk:8088/services/collector/raw -->
+        <token>${SPLUNK_HEC_TOKEN}</token>
+        <sourcetype>_json</sourcetype>
+        <index>main</index>
+        <disableCertificateValidation>true</disableCertificateValidation> <!-- for local demo -->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="SPLUNK" />
+    </root>
+</configuration>
