@@ -30,7 +30,7 @@ class MovieInfoRepositoryTest {
                         List.of("Arjun Mehta", "Sara Khan", "Rohit Kapoor"),
                         LocalDate.parse("2021-07-16")),
 
-                new MovieInfo("M002", "Echoes of Tomorrow", 2022,
+                new MovieInfo("M002", "Echoes of Tomorrow", 2021,
                         List.of("Neha Sharma", "Vikram Rao"),
                         LocalDate.parse("2022-03-11")),
 
@@ -82,6 +82,22 @@ class MovieInfoRepositoryTest {
                 .assertNext(m -> Assertions.assertNotNull(m.getMovieInfoId()))
                 .verifyComplete();
 
+    }
+
+    @Test
+    void tet_findByYear(){
+        Flux<MovieInfo> movies = movieInfoRepository.findByYear(2021);
+        StepVerifier.create(movies)
+                .expectNextCount(2)
+                .verifyComplete();
+    }
+
+    @Test
+    void tet_findByName(){
+        Flux<MovieInfo> movies = movieInfoRepository.findByNameLike("Midnight");
+        StepVerifier.create(movies)
+                .expectNextCount(1)
+                .verifyComplete();
     }
 
 
