@@ -15,7 +15,7 @@ public class ReviewRouter {
     public RouterFunction<ServerResponse> getReviews(ReviewHandler reviewHandler){
         return route()
                 .GET("/api/reviews", (reviewHandler::allReviews))
-                .GET("{/api/reviews", (reviewHandler::allReviews))
+                .GET("/api/reviews/{movieInfoId}", (reviewHandler::reviewsByMovieId))
                 .POST("/api/reviews", reviewHandler::addReview)
                 .build();
 

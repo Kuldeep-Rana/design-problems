@@ -30,4 +30,15 @@ public class ReviewHandler {
         return ServerResponse.ok().body(reviews, MovieReview.class);
     }
 
+    public Mono<ServerResponse> reviewsByMovieId(ServerRequest request) {
+
+        String movieInfoId = request.pathVariable("movieInfoId");
+
+        Flux<MovieReview> reviews = movieReviewRepository.findByMovieInfoId(movieInfoId);
+
+        return ServerResponse.ok()
+                .body(reviews, MovieReview.class);
+    }
+
+
 }
