@@ -1,0 +1,14 @@
+[
+  {
+    "reviewId": "R2501",
+    "movieInfoId": "M2501",
+    "comment": "Good one to end the year",
+    "rating": 3
+  },
+  {
+    "reviewId": "R2502",
+    "movieInfoId": "M2501",
+    "comment": "Good one ",
+    "rating": 4
+  }
+]
